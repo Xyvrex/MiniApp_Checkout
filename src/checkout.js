@@ -6,7 +6,7 @@ function calculateTotal(subtotal) {
 }
 
 function formatTotal(total) {
-  return `Total: $${total.toFixed(2)}`;
+  return `Total: $${total.toFixed(5)}`;
 }
 
 // Lets Node (unit tests) import this file. Browsers skip this line.
