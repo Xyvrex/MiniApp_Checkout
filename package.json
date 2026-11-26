@@ -1,0 +1,17 @@
+{
+  "name": "ci-cd-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A small project that demonstrates CI/CD with GitHub Actions and Playwright",
+  "scripts": {
+    "test:unit": "node --test tests/unit/*.test.js",
+    "build": "node scripts/build.js",
+    "test:e2e": "playwright test",
+    "test": "npm run test:unit && npm run build && npm run test:e2e",
+    "smoke": "playwright test --config=playwright.smoke.config.js",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}
