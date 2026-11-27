@@ -27,16 +27,16 @@ test('checkout page shows all expected labels and fields', async ({ page }) => {
   await expect(page.getByTestId('total')).toHaveText('');
 });
 
-test('the build step stamped a version into the page', async ({ page }) => {
+test('the build step stamped a version into the page TC-115', async ({ page }) => {
   await expect(page.getByTestId('build')).not.toHaveText('__BUILD_VERSION__');
 });
 
-test('adds 8% tax to a $100 subtotal', async ({ page }) => {
+test('adds 8% tax to a $100 subtotal TC-104', async ({ page }) => {
   await calculate(page, 100);
   await expect(page.getByTestId('total')).toHaveText('Total: $108.00');
 });
 
-test('adds 8% tax to a $50 subtotal', async ({ page }) => {
+test('adds 8% tax to a $50 subtotal TC-105', async ({ page }) => {
   await calculate(page, 50);
   await expect(page.getByTestId('total')).toHaveText('Total: $54.00');
 });
