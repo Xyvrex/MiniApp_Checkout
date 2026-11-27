@@ -28,28 +28,28 @@ jobs:
       - name: Run unit tests
         run: npm run test:unit
 
-  # # 2. Test the API with the Postman collection
-  # api-tests:
-  #   needs: unit-tests
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
+  # 2. Test the API with the Postman collection
+  api-tests:
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  #     - name: Start the API and run the Postman collection
-  #       run: |
-  #         node server/server.js &
-  #         for i in $(seq 1 20); do
-  #           curl -s http://localhost:3000/health && break
-  #           sleep 1
-  #         done
-  #         npm run test:api
+      - name: Start the API and run the Postman collection
+        run: |
+          node server/server.js &
+          for i in $(seq 1 20); do
+            curl -s http://localhost:3000/health && break
+            sleep 1
+          done
+          npm run test:api
 
   # 3. Build the app once and save the result for the later jobs
   build:
@@ -110,8 +110,8 @@ jobs:
 
   # 5. Deploy the exact build that was tested (main branch only)
   deploy:
-   # needs: [e2e-tests, api-tests]
-    needs: [e2e-tests]
+    needs: [e2e-tests, api-tests]
+   # needs: [e2e-tests]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
