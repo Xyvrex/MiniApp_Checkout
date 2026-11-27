@@ -1,5 +1,5 @@
 // Business logic: no page code in here, so it can be unit tested on its own.
-const TAX_RATE = 0.08;
+const TAX_RATE = 0.05;
 
 function calculateTotal(subtotal) {
   return Math.round(subtotal * (1 + TAX_RATE) * 100) / 100;
