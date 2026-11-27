@@ -11,10 +11,12 @@
     "smoke": "playwright test --config=playwright.smoke.config.js",
     "report": "playwright show-report",
     "start": "node server/server.js",
-    "test:api": "newman run postman/checkout.postman_collection.json -e postman/local.postman_environment.json"
+    "test:api": "newman run postman/checkout.postman_collection.json -e postman/local.postman_environment.json",
+    "test:api:report": "newman run postman/checkout.postman_collection.json -e postman/local.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export newman-report/report.html"
   },
   "devDependencies": {
     "@playwright/test": "^1.48.0",
-    "newman": "^6.2.1"
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.23.1"
   }
 }
